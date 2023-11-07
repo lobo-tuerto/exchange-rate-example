@@ -16,7 +16,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "vue": "^3.3.8"
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
