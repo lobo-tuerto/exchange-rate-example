@@ -16,12 +16,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "lodash-es": "^4.17.21",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
+    "@types/lodash-es": "^4.17.11",
     "@types/node": "^20.8.10",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
