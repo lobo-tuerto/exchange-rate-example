@@ -1,6 +1,15 @@
 <script lang="ts" setup>
+import { onMounted } from 'vue'
+
 import PageContent from '@/components/content/PageContent.vue'
 import ExchangeIcon from '@/components/icons/ExchangeIcon.vue'
+import { exchangeRateService } from '@/services/data/exchangeRateService'
+
+onMounted(() => {
+  exchangeRateService.get().then((res) => {
+    console.log(res)
+  })
+})
 </script>
 
 <template>
