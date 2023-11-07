@@ -1,3 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #app {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-theme-300 font-raleway text-theme-800;
+  }
+
+  table {
+    thead {
+      tr {
+        @apply bg-theme-400 bg-opacity-30;
+
+        th {
+          @apply px-4 py-2;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          @apply px-4 py-2;
+        }
+      }
+    }
+  }
+}
