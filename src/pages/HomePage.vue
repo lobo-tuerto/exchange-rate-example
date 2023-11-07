@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+import PageContent from '@/components/content/PageContent.vue'
+</script>
+
 <template>
-  <div class="text-xl">Home Page</div>
+  <PageContent>
+    <div class="text-xl">US Dollar - Bitcoin exchange rate</div>
+  </PageContent>
 </template>
