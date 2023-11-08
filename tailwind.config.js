@@ -6,6 +6,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        accent: {
+          DEFAULT: colors.rose[600],
+        },
+
         theme: {
           50: colors.slate[50],
           100: colors.slate[100],

@@ -18,7 +18,7 @@
   table {
     thead {
       tr {
-        @apply bg-theme-400 bg-opacity-30;
+        @apply bg-theme-400 bg-opacity-30 text-xs;
 
         th {
           @apply px-4 py-2;
@@ -28,6 +28,8 @@
 
     tbody {
       tr {
+        @apply text-sm;
+
         td {
           @apply px-4 py-2;
         }
