@@ -12,6 +12,8 @@ export const useExchangeRateStore = defineStore('exchangeRate', {
       exchangeRates: [] as Array<ExchangeRate>,
       fetchError: false,
       fromCurrency: 'BTC',
+      intervalId: undefined as ReturnType<typeof setInterval> | undefined,
+      intervalTime: 10_000,
       isLoading: false,
       toCurrency: 'USD',
     }
@@ -51,6 +53,20 @@ export const useExchangeRateStore = defineStore('exchangeRate', {
         .finally(() => {
           this.isLoading = false
         })
+    },
+
+    startPeriodicFetching() {
+      clearInterval(this.intervalId)
+      this.fetchExchangeRate()
+
+      this.intervalId = setInterval(() => {
+        this.fetchExchangeRate()
+      }, this.intervalTime)
+    },
+
+    stopPeriodicFetching() {
+      clearInterval(this.intervalId)
+      this.intervalId = undefined
     },
   },
 })

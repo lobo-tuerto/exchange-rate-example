@@ -9,18 +9,12 @@ import { useExchangeRateStore } from '@/stores/exchangeRateStore'
 
 const exchangeRateStore = useExchangeRateStore()
 
-let intervalId: ReturnType<typeof setInterval> | undefined = undefined
-
 onMounted(() => {
-  exchangeRateStore.fetchExchangeRate()
-
-  intervalId = setInterval(() => {
-    exchangeRateStore.fetchExchangeRate()
-  }, 5000)
+  exchangeRateStore.startPeriodicFetching()
 })
 
 onUnmounted(() => {
-  clearInterval(intervalId)
+  exchangeRateStore.stopPeriodicFetching()
 })
 </script>
 
@@ -47,7 +41,7 @@ onUnmounted(() => {
       </FadeTransition>
     </div>
 
-    <div class="mt-3 max-h-[200px] overflow-auto bg-theme-600/10">
+    <div class="mt-3 max-h-[300px] overflow-auto bg-theme-600/10">
       <table>
         <thead>
           <tr>
@@ -62,6 +56,7 @@ onUnmounted(() => {
             :key="er.last_refreshed.toISOString()"
           >
             <td>{{ format(er.last_refreshed, 'yyyy/MM/dd HH:mm:ss') }}</td>
+
             <td>
               {{ new Intl.NumberFormat().format(er.exchange_rate) }}
               {{ er.to_currency_code }}

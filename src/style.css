@@ -18,7 +18,7 @@
   table {
     thead {
       tr {
-        @apply bg-theme-400 bg-opacity-30 text-xs;
+        @apply bg-theme-400/30 text-xs;
 
         th {
           @apply px-4 py-2;
@@ -31,7 +31,8 @@
         @apply text-sm;
 
         td {
-          @apply px-4 py-2;
+          @apply px-4 py-1;
+          @apply border-b border-theme-400/50;
         }
       }
     }
