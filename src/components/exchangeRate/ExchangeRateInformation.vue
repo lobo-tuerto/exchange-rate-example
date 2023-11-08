@@ -3,6 +3,8 @@ import { format } from 'date-fns'
 import { onMounted, onUnmounted } from 'vue'
 
 import LoadingIcon from '@/components/icons/LoadingIcon.vue'
+import FadeTransition from '@/components/transitions/FadeTransition.vue'
+import SlideTransitionGroup from '@/components/transitions/SlideTransitionGroup.vue'
 import { useExchangeRateStore } from '@/stores/exchangeRateStore'
 
 const exchangeRateStore = useExchangeRateStore()
@@ -24,7 +26,7 @@ onUnmounted(() => {
 
 <template>
   <div v-if="!exchangeRateStore.latestExchangeRate">
-    No values to present yet...
+    No values yet, please wait.
   </div>
 
   <div v-else>
@@ -37,10 +39,12 @@ onUnmounted(() => {
       }}
       {{ exchangeRateStore.latestExchangeRate.to_currency_code }}
 
-      <LoadingIcon
-        v-if="exchangeRateStore.isLoading"
-        class="h-6 animate-spin text-accent"
-      />
+      <FadeTransition>
+        <LoadingIcon
+          v-if="exchangeRateStore.isLoading"
+          class="h-6 animate-spin text-accent"
+        />
+      </FadeTransition>
     </div>
 
     <div class="mt-3 max-h-[200px] overflow-auto bg-theme-600/10">
@@ -52,10 +56,10 @@ onUnmounted(() => {
           </tr>
         </thead>
 
-        <tbody>
+        <SlideTransitionGroup tag="tbody">
           <tr
-            v-for="(er, index) in exchangeRateStore.exchangeRates"
-            :key="index"
+            v-for="er in exchangeRateStore.exchangeRates"
+            :key="er.last_refreshed.toISOString()"
           >
             <td>{{ format(er.last_refreshed, 'yyyy/MM/dd HH:mm:ss') }}</td>
             <td>
@@ -63,7 +67,7 @@ onUnmounted(() => {
               {{ er.to_currency_code }}
             </td>
           </tr>
-        </tbody>
+        </SlideTransitionGroup>
       </table>
     </div>
   </div>
