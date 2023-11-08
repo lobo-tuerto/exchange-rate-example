@@ -3,11 +3,13 @@ import { onMounted } from 'vue'
 
 import PageContent from '@/components/content/PageContent.vue'
 import ExchangeIcon from '@/components/icons/ExchangeIcon.vue'
-import { exchangeRateService } from '@/services/data/exchangeRateService'
+import { useExchangeRateStore } from '@/stores/exchangeRateStore'
+
+const exchangeRateStore = useExchangeRateStore()
 
 onMounted(() => {
-  exchangeRateService.get().then((res) => {
-    console.log(res)
+  exchangeRateStore.currentExchangeRate().then((exchangeRate) => {
+    console.log('exchangeRate', exchangeRate)
   })
 })
 </script>
